@@ -9,14 +9,14 @@ type Props = ButtonProps & {
   label: string;
 };
 
-export const AppBarLink = ({ label, link, ...props }: Props) => {
+export const AppBarLink = ({ label, link, variant, ...props }: Props) => {
   const pathname = usePathname();
 
   return (
     <Button
       href={link}
       component={Link}
-      variant={pathname === link ? "filled" : "subtle"}
+      variant={pathname === link ? "filled" : variant || "subtle"}
       {...props}
     >
       {label}

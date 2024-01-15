@@ -9,6 +9,7 @@ import {
   MenuItem,
   MenuLabel,
   MenuTarget,
+  Stack,
   Text,
 } from "@mantine/core";
 import {
@@ -20,8 +21,15 @@ import {
 import Link from "next/link";
 import classes from "./styles/AppBarProfile.module.css";
 import { usePathname } from "next/navigation";
+import { AppBarLogout } from "./AppBarLogout";
 
-export const AppBarProfile = () => {
+type Props = {
+  username?: string;
+  email?: string;
+  avatarUrl?: string;
+};
+
+export const AppBarProfile = ({ email, avatarUrl, username }: Props) => {
   const pathname = usePathname();
   return (
     <Menu
@@ -35,13 +43,13 @@ export const AppBarProfile = () => {
         <Button variant="subtle" c="var(--mantine-color-text)">
           <Group gap={6}>
             <Avatar
-              src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-8.png"
-              alt="Theo Fournier"
+              src={avatarUrl}
+              alt={username || "User"}
               radius="xl"
               size={24}
             />
             <Text fw={500} size="sm">
-              Theo Fournier
+              {username || email || "User"}
             </Text>
             <IconChevronDown size="1rem" />
           </Group>
@@ -55,7 +63,12 @@ export const AppBarProfile = () => {
           className={classes.profileItem}
           data-active={pathname === "/profiles/test" || undefined}
         >
-          My profile
+          <Stack gap={0}>
+            <Text size="sm">My profile</Text>
+            <Text size="xs" c="dimmed">
+              {email}
+            </Text>
+          </Stack>
         </MenuItem>
         <MenuLabel>Settings</MenuLabel>
         <MenuItem
@@ -67,14 +80,7 @@ export const AppBarProfile = () => {
         >
           Account
         </MenuItem>
-        <MenuItem
-          leftSection={
-            <IconLogout size="1rem" color="var(--mantine-color-error)" />
-          }
-          color="var(--mantine-color-error)"
-        >
-          Logout
-        </MenuItem>
+        <AppBarLogout />
       </MenuDropdown>
     </Menu>
   );

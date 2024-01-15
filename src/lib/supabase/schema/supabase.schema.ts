@@ -9,7 +9,35 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      [_ in never]: never;
+      profiles: {
+        Row: {
+          avatar_url: string | null;
+          created_at: string;
+          id: string;
+          username: string | null;
+        };
+        Insert: {
+          avatar_url?: string | null;
+          created_at?: string;
+          id: string;
+          username?: string | null;
+        };
+        Update: {
+          avatar_url?: string | null;
+          created_at?: string;
+          id?: string;
+          username?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "profiles_id_fkey";
+            columns: ["id"];
+            isOneToOne: true;
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
     };
     Views: {
       [_ in never]: never;
