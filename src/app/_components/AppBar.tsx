@@ -1,8 +1,9 @@
-import { AppShellHeader, Group, Title } from "@mantine/core";
+import { AppShellHeader, Group, Image, Title } from "@mantine/core";
 import { IconSquareRoundedPlusFilled } from "@tabler/icons-react";
 import { AppBarLink } from "./AppBarLink";
 import classes from "./styles/AppBar.module.css";
-import Link from "next/link";
+import NextLink from "next/link";
+import NextImage from "next/image";
 import { AppBarProfile } from "./AppBarProfile";
 import { forwardRef } from "react";
 
@@ -22,9 +23,18 @@ const AppBar = forwardRef<
   return (
     <AppShellHeader ref={ref} className={classes.header} {...props}>
       <Group className={classes.inner} justify="space-between">
-        <Link href="/">
-          <Title>NAME</Title>
-        </Link>
+        <NextLink href="/">
+          <Group gap={4}>
+            <Image
+              component={NextImage}
+              alt="Logo"
+              src="/logo.png"
+              width={40}
+              height={40}
+            />
+            <Title size="h3">IdeaShare</Title>
+          </Group>
+        </NextLink>
         <Group gap={8}>{mainItems}</Group>
         <Group gap={8}>
           <AppBarLink
