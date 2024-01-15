@@ -24,7 +24,7 @@ const AppBar = forwardRef<
     <AppShellHeader ref={ref} className={classes.header} {...props}>
       <Group className={classes.inner} justify="space-between">
         <NextLink href="/">
-          <Group gap={4}>
+          <Group gap={8}>
             <Image
               component={NextImage}
               alt="Logo"
