@@ -14,6 +14,8 @@ import { EditorToolbar } from "./controls/EditorToolbar";
 import { EditorBubbleMenu } from "./controls/EditorBubbleMenu";
 import { ResizableImage } from "./extensions/ResizableImage";
 import { defaultContent } from "./constants";
+import { editorHandlePaste } from "./extensions/editorHandlePaste";
+import { editorHandleDrop } from "./extensions/editorHandleDrop";
 
 type Props = {
   onUpdate: (content: string) => void;
@@ -36,6 +38,10 @@ export const Editor = ({ onUpdate }: Props) => {
     content: defaultContent,
     onUpdate: ({ editor }) => {
       onUpdate(editor.getHTML());
+    },
+    editorProps: {
+      handlePaste: editorHandlePaste,
+      handleDrop: editorHandleDrop,
     },
   });
 

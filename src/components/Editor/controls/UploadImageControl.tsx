@@ -12,16 +12,18 @@ type Props = {
 
 export const UploadImageControl = ({ editor }: Props) => {
   const onFilesSelected = (files: File[]) => {
+    if (!editor) return;
     files.forEach((file) => {
       const fileReader = new FileReader();
 
-      fileReader.readAsDataURL(file);
       fileReader.onload = (e) => {
-        const url = e?.target?.result as string;
-        if (url) {
-          editor?.chain().focus().setImage({ src: url }).run();
-        }
+        const node = editor.view.state.schema.nodes.image.create({
+          src: e.target?.result,
+        });
+        const transaction = editor.view.state.tr.replaceSelectionWith(node);
+        editor.view.dispatch(transaction);
       };
+      fileReader.readAsDataURL(file);
     });
   };
 
