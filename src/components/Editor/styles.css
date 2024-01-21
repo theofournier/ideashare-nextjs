@@ -1,0 +1,23 @@
+.tiptap {
+  img {
+    height: auto;
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    &.ProseMirror-selectednode {
+      outline: 3px solid #68cef8;
+    }
+  }
+
+  .image-small {
+    max-width: 200px;
+  }
+  .image-medium {
+    max-width: 500px;
+  }
+  .image-large {
+    max-width: 100%;
+  }
+}
