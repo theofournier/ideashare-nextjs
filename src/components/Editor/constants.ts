@@ -38,7 +38,7 @@ export const defaultContent = `
 </blockquote>
 <hr>
 <p>And you can upload images:</p>
-<img src="/logo.png" class="image-medium" contenteditable="false" draggable="true">
+<img src="/logo.png" class="image-small" contenteditable="false" draggable="true">
 <hr>
 <p style="text-align: center;">Be creative!</p>
 `;

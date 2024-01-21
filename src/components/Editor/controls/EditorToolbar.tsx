@@ -2,6 +2,7 @@ import { RichTextEditor } from "@mantine/tiptap";
 import { IconPhoto } from "@tabler/icons-react";
 import { Editor } from "@tiptap/react";
 import { colors, iconProps } from "../constants";
+import { UploadImageControl } from "./UploadImageControl";
 
 type Props = {
   editor: Editor | null;
@@ -13,6 +14,13 @@ export const EditorToolbar = ({ editor }: Props) => {
       <RichTextEditor.ControlsGroup>
         <RichTextEditor.Undo />
         <RichTextEditor.Redo />
+      </RichTextEditor.ControlsGroup>
+
+      <RichTextEditor.ControlsGroup>
+        <RichTextEditor.AlignLeft />
+        <RichTextEditor.AlignCenter />
+        <RichTextEditor.AlignRight />
+        <RichTextEditor.AlignJustify />
       </RichTextEditor.ControlsGroup>
 
       <RichTextEditor.ControlsGroup>
@@ -53,27 +61,7 @@ export const EditorToolbar = ({ editor }: Props) => {
       </RichTextEditor.ControlsGroup>
 
       <RichTextEditor.ControlsGroup>
-        <RichTextEditor.Control
-          title="Insert image"
-          aria-label="Insert image"
-          onClick={() => {
-            const url = window.prompt("URL");
-
-            if (url) {
-              editor?.chain().focus().setImage({ src: url }).run();
-            }
-          }}
-          active={editor?.isActive("image")}
-        >
-          <IconPhoto {...iconProps} />
-        </RichTextEditor.Control>
-      </RichTextEditor.ControlsGroup>
-
-      <RichTextEditor.ControlsGroup>
-        <RichTextEditor.AlignLeft />
-        <RichTextEditor.AlignCenter />
-        <RichTextEditor.AlignRight />
-        <RichTextEditor.AlignJustify />
+        <UploadImageControl editor={editor} />
       </RichTextEditor.ControlsGroup>
 
       <RichTextEditor.ControlsGroup>

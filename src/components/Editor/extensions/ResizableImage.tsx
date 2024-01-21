@@ -6,7 +6,7 @@ export const ResizableImage = Image.extend({
     return {
       ...this.parent?.(),
       size: {
-        default: "medium",
+        default: "small",
         rendered: false,
       },
     };

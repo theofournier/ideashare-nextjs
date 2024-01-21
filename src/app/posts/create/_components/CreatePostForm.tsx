@@ -29,11 +29,7 @@ export const CreatePostForm = () => {
   return (
     <form action={formAction}>
       <input name="description" value={content} hidden aria-hidden readOnly />
-      <SaveButton />
-      {state.errorMessage && (
-        <Text c="var(--mantine-color-error)">{state.errorMessage}</Text>
-      )}
-      <TextInput label="Title" placeholder="Post title" name="title" required />
+      <TextInput label="Title" placeholder="Post title" name="title" required size="lg"/>
       <Textarea
         label="Short description"
         placeholder="Post short description"
@@ -46,6 +42,10 @@ export const CreatePostForm = () => {
       <Input.Wrapper label="Description" required>
         <Editor onUpdate={(content) => setContentDebounced(content)} />
       </Input.Wrapper>
+      <SaveButton />
+      {state.errorMessage && (
+        <Text c="var(--mantine-color-error)">{state.errorMessage}</Text>
+      )}
     </form>
   );
 };
