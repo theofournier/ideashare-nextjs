@@ -21,7 +21,7 @@ export default async function Login() {
     return redirect("/");
   }
   return (
-    <Container size={460} my={40}>
+    <Container size="xs" my={40}>
       <Title ta="center">Welcome back!</Title>
 
       <Paper withBorder p="xl" mt="xl" radius="md">

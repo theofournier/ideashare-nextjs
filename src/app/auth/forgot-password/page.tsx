@@ -17,7 +17,7 @@ import { ForgotPasswordForm } from "./_components/ForgotPasswordForm";
 
 export default function ForgotPassword() {
   return (
-    <Container size={460} my={40}>
+    <Container size="xs" my={40}>
       <Title ta="center">Forgot your password?</Title>
       <Text c="dimmed" fz="sm" ta="center" mt={8}>
         Enter your email to get a reset link

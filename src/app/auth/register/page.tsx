@@ -22,7 +22,7 @@ export default async function Register() {
   }
 
   return (
-    <Container size={460} my={40}>
+    <Container size="xs" my={40}>
       <Title ta="center">Welcome to IdeaShare!</Title>
 
       <Paper withBorder p="xl" mt="xl" radius="md">
