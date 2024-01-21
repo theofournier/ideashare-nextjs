@@ -1,8 +1,5 @@
 "use client";
 
-import "./styles.css";
-
-import { Button, Space } from "@mantine/core";
 import { RichTextEditor, Link } from "@mantine/tiptap";
 import { useEditor } from "@tiptap/react";
 import Highlight from "@tiptap/extension-highlight";
@@ -18,7 +15,11 @@ import { EditorBubbleMenu } from "./controls/EditorBubbleMenu";
 import { ResizableImage } from "./extensions/ResizableImage";
 import { defaultContent } from "./constants";
 
-export const Editor = () => {
+type Props = {
+  onUpdate: (content: string) => void;
+};
+
+export const Editor = ({ onUpdate }: Props) => {
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -33,26 +34,17 @@ export const Editor = () => {
       ResizableImage,
     ],
     content: defaultContent,
+    onUpdate: ({ editor }) => {
+      onUpdate(editor.getHTML());
+    },
   });
 
   return (
-    <div>
-      <Button
-        onClick={() => {
-          console.log(editor?.getHTML());
-          console.log(editor?.getJSON());
-          console.log(editor?.getText());
-        }}
-      >
-        Save
-      </Button>
-      <Space h="md" />
-      <RichTextEditor editor={editor}>
-        <EditorToolbar editor={editor} />
-        {editor && <EditorBubbleMenu editor={editor} />}
+    <RichTextEditor editor={editor}>
+      <EditorToolbar editor={editor} />
+      {editor && <EditorBubbleMenu editor={editor} />}
 
-        <RichTextEditor.Content />
-      </RichTextEditor>
-    </div>
+      <RichTextEditor.Content />
+    </RichTextEditor>
   );
 };

@@ -19,14 +19,18 @@ const getIconSize = (size: "small" | "medium" | "large") => {
 };
 
 const ImageControl = ({
+  title,
   size,
   editor,
 }: {
+  title: string;
   size: "small" | "medium" | "large";
   editor: Editor;
 }) => {
   return (
     <RichTextEditor.Control
+      title={title}
+      aria-label={title}
       onClick={() => editor.chain().focus().setImage({ size }).run()}
       active={editor.isActive("image", { size })}
     >
@@ -40,9 +44,9 @@ export const EditorBubbleMenu = ({ editor }: Props) => {
     return (
       <BubbleMenu editor={editor}>
         <RichTextEditor.ControlsGroup>
-          <ImageControl size="small" editor={editor} />
-          <ImageControl size="medium" editor={editor} />
-          <ImageControl size="large" editor={editor} />
+          <ImageControl title="Small" size="small" editor={editor} />
+          <ImageControl title="Medium" size="medium" editor={editor} />
+          <ImageControl title="Large" size="large" editor={editor} />
         </RichTextEditor.ControlsGroup>
       </BubbleMenu>
     );

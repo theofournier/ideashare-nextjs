@@ -25,20 +25,20 @@ export const defaultContent = `
 <h3><em>What you see is what you get</em></h3>
 <p>This editor is based on <a href="https://tiptap.dev/" rel="noopener noreferrer" target="_blank">Tiptap.dev</a> and supports all these features:</p>
 <ul>
-<li>General text formatting: <strong>bold</strong>, <em>italic</em>, <u>underline</u>, <s>strike-through</s></li>
-<li>Headings (h1-h6)</li>
-<li>Sub and super scripts (<sup>&lt;sup /&gt;</sup> and <sub>&lt;sub /&gt;</sub> tags)</li>
-<li>Ordered and bullet lists</li>
-<li>Text align&nbsp;</li>
-<li><span style="color: #40c057">Colored text</span> and <mark>highlighted text</mark></li>
-<li><code>Code quote</code></li>
+<li><p>General text formatting: <strong>bold</strong>, <em>italic</em>, <u>underline</u>, <s>strike-through</s></p></li>
+<li><p>Headings (h1-h6)</p></li>
+<li><p>Sub and super scripts (<sup>&lt;sup /&gt;</sup> and <sub>&lt;sub /&gt;</sub> tags)</p></li>
+<li><p>Ordered and bullet lists</p></li>
+<li><p>Text align&nbsp;</p></li>
+<li><p><span style="color: #40c057">Colored text</span> and <mark>highlighted text</mark></p></li>
+<li><p><code>Code quote</code></p></li>
 </ul>
 <blockquote>
 <p>You can also add blockquote!</p>
 </blockquote>
 <hr>
 <p>And you can upload images:</p>
-<img src="/logo.png" class="image-small" contenteditable="false" draggable="true">
+<img src="/logo.png" class="image-medium" contenteditable="false" draggable="true">
 <hr>
 <p style="text-align: center;">Be creative!</p>
 `;
