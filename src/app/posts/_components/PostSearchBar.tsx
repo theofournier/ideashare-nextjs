@@ -1,25 +1,14 @@
 import { ActionIcon, TextInput } from "@mantine/core";
 import { IconArrowRight, IconSearch } from "@tabler/icons-react";
-import { redirect } from "next/navigation";
 
 type Props = {
-  searchQuery: string;
+  searchQuery?: string;
+  onSearch: (formData: FormData) => void;
 };
 
-export const PostSearchBar = ({ searchQuery }: Props) => {
-  const search = async (formData: FormData) => {
-    "use server";
-
-    const query = formData.get("query");
-
-    if (!query) {
-      redirect("/posts");
-    }
-
-    redirect(`/posts?query=${query}`);
-  };
+export const PostSearchBar = ({ searchQuery, onSearch }: Props) => {
   return (
-    <form action={search}>
+    <form action={onSearch}>
       <TextInput
         radius="xl"
         size="md"
