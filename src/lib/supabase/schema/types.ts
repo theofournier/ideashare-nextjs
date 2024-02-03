@@ -5,7 +5,7 @@ export type User = {
 };
 
 export type ActivityInfo = {
-  likeCount?: number;
+  voteCount?: number;
   commentCount?: number;
   viewCount?: number;
 };

@@ -22,48 +22,56 @@ type Props = {
 
 export const PostItem = ({ post }: Props) => {
   return (
-    <Card withBorder p={0}>
-      <Stack h="100%" justify="space-between">
-        <Stack px="md" pt="md" gap="xs">
-          <Title order={3} lineClamp={2}>
-            {post.title}
-          </Title>
-          <Text lineClamp={5}>{post.shortDescription}</Text>
-        </Stack>
-        <div>
-          <Flex px="md" justify="center">
-            <Button
-              component={NextLink}
-              href={`/posts/${post.id}`}
-              variant="subtle"
-            >
-              See post
-            </Button>
-          </Flex>
-          <Divider />
-          <Flex py="xs" px="md">
-            <UserTimestamp user={post.user} date={post.createdAt} />
-          </Flex>
-          <Divider />
-          <Group justify="space-between" py="xs" px="md">
-            <Group gap={0}>
-              <Button variant="subtle" leftSection={<IconThumbUp />}>
-                <Text size="sm" c="dimmed">
-                  {post.activityInfo?.likeCount ?? 0}
-                </Text>
-              </Button>
-              <Button variant="subtle" leftSection={<IconMessageCircle />}>
-                <Text size="sm" c="dimmed">
-                  {post.activityInfo?.likeCount ?? 0}
-                </Text>
-              </Button>
+    <Card withBorder style={{ justifyContent: "space-between" }} pb="xs">
+      <Stack gap="xs">
+        <Title order={3} lineClamp={2}>
+          {post.title}
+        </Title>
+        <Text lineClamp={5}>{post.shortDescription}</Text>
+      </Stack>
+      <div>
+        <Flex justify="center">
+          <Button
+            component={NextLink}
+            href={`/posts/${post.id}`}
+            variant="subtle"
+          >
+            See post
+          </Button>
+        </Flex>
+        <Divider />
+        <Flex py="xs">
+          <UserTimestamp user={post.user} date={post.createdAt} />
+        </Flex>
+        <Divider />
+        <Stack mt="xs" gap="xs">
+          <Group justify="space-between">
+            <Group>
+              <Text size="sm" c="dimmed">
+                {post.activityInfo?.voteCount ?? 0} votes
+              </Text>
+              <Text size="sm" c="dimmed">
+                {post.activityInfo?.commentCount ?? 0} comments
+              </Text>
             </Group>
-            <Text size="xs" c="dimmed">
+            <Text size="sm" c="dimmed">
               {post.activityInfo?.viewCount ?? 0} views
             </Text>
           </Group>
-        </div>
-      </Stack>
+          <Group grow>
+            <Button variant="subtle" leftSection={<IconThumbUp />}>
+              <Text size="sm" c="dimmed">
+                Like
+              </Text>
+            </Button>
+            <Button variant="subtle" leftSection={<IconMessageCircle />}>
+              <Text size="sm" c="dimmed">
+                Comment
+              </Text>
+            </Button>
+          </Group>
+        </Stack>
+      </div>
     </Card>
   );
 };

@@ -28,7 +28,7 @@ export async function getPosts(): Promise<Post[]> {
       },
       activityInfo: {
         commentCount: 10,
-        likeCount: 100,
+        voteCount: 100,
         viewCount: 200,
       },
       createdAt: "2024-02-02T18:45:00Z",

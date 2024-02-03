@@ -7,9 +7,9 @@ export default async function Posts() {
   return (
     <Container size="lg">
       <SimpleGrid
-        cols={{ base: 1, xs: 2, sm: 3 }}
-        spacing={{ base: 10, sm: "md" }}
-        verticalSpacing={{ base: 10, sm: "md" }}
+        cols={{ base: 1, xs: 2, md: 3 }}
+        spacing={{ base: 10, md: "md" }}
+        verticalSpacing={{ base: 10, md: "md" }}
       >
         {[...posts, ...posts].map((post) => (
           <PostItem key={post.id} post={post} />
