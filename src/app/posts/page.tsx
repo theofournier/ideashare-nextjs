@@ -1,3 +1,20 @@
-export default function Posts() {
-  return <div>Posts</div>;
+import { getPosts } from "@/lib/supabase/queries/post/getPosts";
+import { PostItem } from "./_components/PostItem";
+import { Container, SimpleGrid } from "@mantine/core";
+
+export default async function Posts() {
+  const posts = await getPosts();
+  return (
+    <Container size="lg">
+      <SimpleGrid
+        cols={{ base: 1, xs: 2, sm: 3 }}
+        spacing={{ base: 10, sm: "md" }}
+        verticalSpacing={{ base: 10, sm: "md" }}
+      >
+        {[...posts, ...posts].map((post) => (
+          <PostItem key={post.id} post={post} />
+        ))}
+      </SimpleGrid>
+    </Container>
+  );
 }
