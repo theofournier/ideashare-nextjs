@@ -19,3 +19,10 @@ export type Post = {
   activityInfo?: ActivityInfo;
   createdAt: string;
 };
+
+export type PostComment = {
+  id: string;
+  comment: string;
+  user: User;
+  createdAt: string;
+};
