@@ -1,4 +1,4 @@
-import { UserTimestamp } from "@/components/User/UserTimestamp";
+import { UserTimestamp } from "@/components/Profile/UserTimestamp";
 import { Post } from "@/lib/supabase/schema/types";
 import { Button, Group, Stack, Text, Title } from "@mantine/core";
 import { IconThumbUp } from "@tabler/icons-react";

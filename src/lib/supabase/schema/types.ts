@@ -4,7 +4,7 @@ export type User = {
   avatarUrl?: string;
 };
 
-export type ActivityInfo = {
+export type PostActivityInfo = {
   voteCount?: number;
   commentCount?: number;
   viewCount?: number;
@@ -16,7 +16,7 @@ export type Post = {
   shortDescription: string;
   description: string;
   user: User;
-  activityInfo?: ActivityInfo;
+  activityInfo?: PostActivityInfo;
   createdAt: string;
 };
 
@@ -25,4 +25,15 @@ export type PostComment = {
   comment: string;
   user: User;
   createdAt: string;
+};
+
+export type ProfileActivityInfo = {
+  followerCount?: number;
+  postCount?: number;
+  voteCount?: number;
+};
+
+export type Profile = {
+  user: User;
+  activityInfo: ProfileActivityInfo;
 };

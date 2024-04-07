@@ -1,5 +1,5 @@
 import { VoteButton } from "@/components/Post/VoteButton";
-import { UserTimestamp } from "@/components/User/UserTimestamp";
+import { UserTimestamp } from "@/components/Profile/UserTimestamp";
 import { Post } from "@/lib/supabase/schema/types";
 import {
   Anchor,

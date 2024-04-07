@@ -1,4 +1,4 @@
-import { UserTimestamp } from "@/components/User/UserTimestamp";
+import { UserTimestamp } from "@/components/Profile/UserTimestamp";
 import { getPostComments } from "@/lib/supabase/queries/post/getPostComments";
 import { NextPageProps } from "@/lib/types";
 import {

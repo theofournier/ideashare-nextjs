@@ -1,4 +1,4 @@
-import { UserTimestamp } from "@/components/User/UserTimestamp";
+import { UserTimestamp } from "@/components/Profile/UserTimestamp";
 import { PostComment } from "@/lib/supabase/schema/types";
 import { Card, Stack, Text } from "@mantine/core";
 
