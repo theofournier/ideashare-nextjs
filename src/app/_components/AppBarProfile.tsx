@@ -42,12 +42,7 @@ export const AppBarProfile = ({ email, avatarUrl, username }: Props) => {
       <MenuTarget>
         <Button variant="subtle" c="var(--mantine-color-text)">
           <Group gap={6}>
-            <Avatar
-              src={avatarUrl}
-              alt={username || "User"}
-              radius="xl"
-              size={24}
-            />
+            <Avatar src={avatarUrl} alt={username || "User"} size={24} />
             <Text fw={500} size="sm">
               {username || email || "User"}
             </Text>

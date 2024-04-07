@@ -29,8 +29,10 @@ export type PostComment = {
 
 export type ProfileActivityInfo = {
   followerCount?: number;
+  followingCount?: number;
   postCount?: number;
   voteCount?: number;
+  postVotedCount?: number;
 };
 
 export type Profile = {

@@ -26,11 +26,7 @@ export const UserTimestamp = ({ user, date }: Props) => {
   return (
     <Group>
       <NextLink href={`/profiles/${user.id}`}>
-        <Avatar
-          src={user.avatarUrl}
-          alt={user.username || "User"}
-          radius="xl"
-        />
+        <Avatar src={user.avatarUrl} alt={user.username || "User"} />
       </NextLink>
       <div>
         <Text size="sm">{user.username || "User"}</Text>

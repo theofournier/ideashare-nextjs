@@ -9,8 +9,10 @@ export const profilesMock: Profile[] = [
     },
     activityInfo: {
       followerCount: 10,
+      followingCount: 2,
       postCount: 2,
       voteCount: 20,
+      postVotedCount: 2,
     },
   },
   {
@@ -21,8 +23,10 @@ export const profilesMock: Profile[] = [
     },
     activityInfo: {
       followerCount: 100,
-      postCount: 20,
+      followingCount: 2,
+      postCount: 2,
       voteCount: 200,
+      postVotedCount: 2,
     },
   },
 ];

@@ -1,3 +1,4 @@
+import { FollowButton } from "@/components/Profile/FollowButton";
 import { Profile } from "@/lib/supabase/schema/types";
 import {
   Anchor,
@@ -31,7 +32,6 @@ export const ProfileItem = ({ profile }: Props) => {
             <Avatar
               src={profile.user.avatarUrl}
               alt={profile.user.username || "User"}
-              radius="xl"
             />
             <Title order={3}>{profile.user.username || "User"}</Title>
           </Group>
@@ -55,7 +55,7 @@ export const ProfileItem = ({ profile }: Props) => {
               <Text span fw="bold">
                 {profile.activityInfo?.voteCount ?? 0}
               </Text>{" "}
-              votes
+              votes total
             </Text>
           </Stack>
         </Group>
@@ -63,11 +63,7 @@ export const ProfileItem = ({ profile }: Props) => {
           <Text size="sm" c="dimmed">
             {profile.activityInfo?.followerCount ?? 0} followers
           </Text>
-          <Button variant="subtle" leftSection={<IconUserPlus />}>
-            <Text size="sm" c="dimmed">
-              Follow
-            </Text>
-          </Button>
+          <FollowButton userId={profile.user.id} size="sm" />
         </Stack>
       </Stack>
     </Card>

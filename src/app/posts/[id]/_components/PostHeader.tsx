@@ -7,13 +7,12 @@ import { VoteButton } from "@/components/Post/VoteButton";
 
 type Props = {
   post: Post;
-  commentsCount?: number;
 };
 
-export const PostHeader = ({ post, commentsCount }: Props) => {
+export const PostHeader = ({ post }: Props) => {
   return (
     <Stack>
-      <Group justify="space-between" wrap="nowrap">
+      <Group justify="space-between" wrap="nowrap" align="start">
         <Stack>
           <Title>{post.title}</Title>
           <Text>{post.shortDescription}</Text>
@@ -35,7 +34,7 @@ export const PostHeader = ({ post, commentsCount }: Props) => {
         </Stack>
       </Group>
       <UserTimestamp user={post.user} date={post.createdAt} />
-      <PostTabs id={post.id} commentsCount={commentsCount} />
+      <PostTabs id={post.id} commentsCount={post.activityInfo?.commentCount} />
     </Stack>
   );
 };
