@@ -24,12 +24,13 @@ import { usePathname } from "next/navigation";
 import { AppBarLogout } from "./AppBarLogout";
 
 type Props = {
+  id: string;
   username?: string;
   email?: string;
   avatarUrl?: string;
 };
 
-export const AppBarProfile = ({ email, avatarUrl, username }: Props) => {
+export const AppBarProfile = ({ id, email, avatarUrl, username }: Props) => {
   const pathname = usePathname();
   return (
     <Menu
@@ -53,10 +54,10 @@ export const AppBarProfile = ({ email, avatarUrl, username }: Props) => {
       <MenuDropdown>
         <MenuItem
           component={Link}
-          href="/profiles/test"
+          href={`/profiles/${id}`}
           leftSection={<IconUserCircle size="1rem" />}
           className={classes.profileItem}
-          data-active={pathname === "/profiles/test" || undefined}
+          data-active={pathname === `/profiles/${id}` || undefined}
         >
           <Stack gap={0}>
             <Text size="sm">My profile</Text>

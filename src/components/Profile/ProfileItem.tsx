@@ -1,22 +1,7 @@
 import { FollowButton } from "@/components/Profile/FollowButton";
 import { Profile } from "@/lib/supabase/schema/types";
-import {
-  Anchor,
-  Avatar,
-  Button,
-  Card,
-  Center,
-  Group,
-  Stack,
-  Text,
-  Title,
-} from "@mantine/core";
-import {
-  IconArrowBigUp,
-  IconNote,
-  IconNotes,
-  IconUserPlus,
-} from "@tabler/icons-react";
+import { Anchor, Avatar, Card, Group, Stack, Text, Title } from "@mantine/core";
+import { IconArrowBigUp, IconNotes } from "@tabler/icons-react";
 import NextLink from "next/link";
 
 type Props = {

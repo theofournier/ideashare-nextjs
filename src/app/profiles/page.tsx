@@ -1,11 +1,10 @@
-import { getPosts } from "@/lib/supabase/queries/post/getPosts";
-import { Container, Group, SimpleGrid } from "@mantine/core";
+import { Container, Group } from "@mantine/core";
 import { NextPageProps } from "@/lib/types";
 import { redirect } from "next/navigation";
 import { ProfileSearchBar } from "./_components/ProfileSearchBar";
 import { ProfileSortMenu } from "./_components/ProfileSortMenu";
-import { ProfileItem } from "./_components/ProfileItem";
 import { getProfiles } from "@/lib/supabase/queries/profile/getProfiles";
+import { ProfilesList } from "@/components/Profile/ProfilesList";
 
 type Props = {
   query?: string;
@@ -38,16 +37,7 @@ export default async function Profiles({ searchParams }: NextPageProps<Props>) {
         <ProfileSearchBar searchQuery={searchQuery} onSearch={onSearch} />
         <ProfileSortMenu searchSort={searchSort} onSearch={onSearch} />
       </Group>
-      <SimpleGrid
-        cols={{ base: 1, xs: 2, md: 3 }}
-        spacing={{ base: 10, md: "md" }}
-        verticalSpacing={{ base: 10, md: "md" }}
-        mt="md"
-      >
-        {[...profiles, ...profiles].map((profile) => (
-          <ProfileItem key={profile.user.id} profile={profile} />
-        ))}
-      </SimpleGrid>
+      <ProfilesList profiles={profiles} />
     </Container>
   );
 }

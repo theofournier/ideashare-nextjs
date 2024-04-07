@@ -1,8 +1,9 @@
-import { getPosts } from "@/lib/supabase/queries/post/getPosts";
+import { PostsList } from "@/components/Post/PostsList";
+import { getProfilePosts } from "@/lib/supabase/queries/post/getProfilePosts";
 import { NextPageProps } from "@/lib/types";
 
 export default async function Profile({ params }: NextPageProps) {
-  const posts = await getPosts();
+  const posts = await getProfilePosts(params.id);
 
-  return <div>Posts</div>;
+  return <PostsList posts={posts} />;
 }

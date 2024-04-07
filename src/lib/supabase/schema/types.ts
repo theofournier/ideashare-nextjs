@@ -22,6 +22,7 @@ export type Post = {
 
 export type PostComment = {
   id: string;
+  postId: string;
   comment: string;
   user: User;
   createdAt: string;
