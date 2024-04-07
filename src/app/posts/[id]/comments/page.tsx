@@ -1,16 +1,6 @@
-import { UserTimestamp } from "@/components/Profile/UserTimestamp";
 import { getPostComments } from "@/lib/supabase/queries/post/getPostComments";
 import { NextPageProps } from "@/lib/types";
-import {
-  Button,
-  Center,
-  Group,
-  SimpleGrid,
-  Stack,
-  Text,
-  Textarea,
-  Title,
-} from "@mantine/core";
+import { Center, SimpleGrid, Stack, Title } from "@mantine/core";
 import { CommentItem } from "./_components/CommentItem";
 import { CreateCommentForm } from "./_components/CreateCommentForm";
 

@@ -36,7 +36,7 @@ export const PostItem = ({ post }: Props) => {
         <Stack gap="xs">
           <Stack gap="xs">
             <Divider />
-            <UserTimestamp user={post.user} date={post.createdAt} />
+            <UserTimestamp user={post.user} date={post.createdAt} small />
             <Divider />
           </Stack>
           <Stack gap="xs">

@@ -10,7 +10,7 @@ export const CommentItem = ({ comment }: Props) => {
   return (
     <Card withBorder>
       <Stack>
-        <UserTimestamp user={comment.user} date={comment.createdAt} />
+        <UserTimestamp user={comment.user} date={comment.createdAt} small />
         <Text>{comment.comment}</Text>
       </Stack>
     </Card>
