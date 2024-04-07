@@ -46,7 +46,12 @@ export const Editor = ({ onUpdate }: Props) => {
   });
 
   return (
-    <RichTextEditor editor={editor}>
+    <RichTextEditor
+      editor={editor}
+      styles={{
+        content: { backgroundColor: "var(--_input-bg)" },
+      }}
+    >
       <EditorToolbar editor={editor} />
       {editor && <EditorBubbleMenu editor={editor} />}
 
