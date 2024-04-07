@@ -1,3 +1,4 @@
+import { VoteButton } from "@/components/Post/VoteButton";
 import { UserTimestamp } from "@/components/User/UserTimestamp";
 import { Post } from "@/lib/supabase/schema/types";
 import {
@@ -59,11 +60,7 @@ export const PostItem = ({ post }: Props) => {
             </Text>
           </Group>
           <Group grow>
-            <Button variant="subtle" leftSection={<IconThumbUp />}>
-              <Text size="sm" c="dimmed">
-                Like
-              </Text>
-            </Button>
+            <VoteButton postId={post.id} size="sm"/>
             <Button variant="subtle" leftSection={<IconMessageCircle />}>
               <Text size="sm" c="dimmed">
                 Comment

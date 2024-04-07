@@ -3,35 +3,39 @@ import { Post } from "@/lib/supabase/schema/types";
 import { Button, Group, Stack, Text, Title } from "@mantine/core";
 import { IconThumbUp } from "@tabler/icons-react";
 import { PostTabs } from "./PostTabs";
+import { VoteButton } from "@/components/Post/VoteButton";
 
 type Props = {
   post: Post;
+  commentsCount?: number;
 };
 
-export const PostHeader = ({ post }: Props) => {
+export const PostHeader = ({ post, commentsCount }: Props) => {
   return (
     <Stack>
-      <Stack>
-        <Group justify="space-between">
+      <Group justify="space-between" wrap="nowrap">
+        <Stack>
           <Title>{post.title}</Title>
-          <Button variant="subtle" leftSection={<IconThumbUp />}>
-            <Text size="sm" c="dimmed">
-              Like
-            </Text>
-          </Button>
-        </Group>
-        <Text>{post.shortDescription}</Text>
-      </Stack>
-      <UserTimestamp user={post.user} date={post.createdAt} />
-      <Group>
-        <Text size="sm" c="dimmed">
-          {post.activityInfo?.voteCount ?? 0} votes
-        </Text>
-        <Text size="sm" c="dimmed">
-          {post.activityInfo?.viewCount ?? 0} views
-        </Text>
+          <Text>{post.shortDescription}</Text>
+        </Stack>
+        <Stack align="center" gap={4}>
+          <VoteButton postId={post.id} size="lg" />
+          <Text size="sm">
+            <Text span fw="bold">
+              {post.activityInfo?.voteCount ?? 0}
+            </Text>{" "}
+            votes
+          </Text>
+          <Text size="sm">
+            <Text span fw="bold">
+              {post.activityInfo?.viewCount ?? 0}
+            </Text>{" "}
+            views
+          </Text>
+        </Stack>
       </Group>
-      <PostTabs id={post.id} />
+      <UserTimestamp user={post.user} date={post.createdAt} />
+      <PostTabs id={post.id} commentsCount={commentsCount} />
     </Stack>
   );
 };

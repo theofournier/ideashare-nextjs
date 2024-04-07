@@ -34,8 +34,8 @@ const sortItems = [
   "Newest",
   "Oldest",
   "Popularity",
-  "Most liked",
-  "Most viewed",
+  "Most votes",
+  "Most views",
 ];
 
 export const PostSortMenu = ({ searchSort = "Newest", onSearch }: Props) => {
