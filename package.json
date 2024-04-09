@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "supabase": "supabase start"
   },
   "dependencies": {
     "@mantine/core": "7.4.1",
@@ -43,6 +44,7 @@
     "postcss": "8.4.33",
     "postcss-preset-mantine": "1.12.3",
     "postcss-simple-vars": "7.0.1",
+    "supabase": "1.153.4",
     "typescript": "5.3.3"
   }
 }
