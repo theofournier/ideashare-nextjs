@@ -2,7 +2,7 @@ import { Profile } from "../../schema/types";
 
 export const currentUserMock: Profile = {
   user: {
-    id: "e02e4cd4-2034-49d9-ba44-f6c579ac955e",
+    id: "bae0b246-c53d-4fcf-a049-f82f8ffca8bb",
     username: "Theo Test",
     avatarUrl: "",
   },
