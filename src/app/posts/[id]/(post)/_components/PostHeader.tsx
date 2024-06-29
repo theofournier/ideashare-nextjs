@@ -4,6 +4,7 @@ import { Button, Group, Stack, Text, Title } from "@mantine/core";
 import { IconThumbUp } from "@tabler/icons-react";
 import { PostTabs } from "./PostTabs";
 import { VoteButton } from "@/components/Post/VoteButton";
+import Link from "next/link";
 
 type Props = {
   post: Post;
@@ -18,6 +19,9 @@ export const PostHeader = ({ post }: Props) => {
           <Text>{post.shortDescription}</Text>
         </Stack>
         <Stack align="center" gap={4}>
+          <Button component={Link} href={`/posts/${post.id}/edit`}>
+            Edit post
+          </Button>
           <VoteButton postId={post.id} size="lg" />
           <Text size="sm">
             <Text span fw="bold">
