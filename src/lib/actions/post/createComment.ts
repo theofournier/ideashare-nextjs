@@ -1,5 +1,9 @@
 "use server";
 
+import { createServerClient } from "@/lib/supabase/clients/server";
+import { getSession } from "@/lib/supabase/queries/auth/getSession";
+import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
 import { z } from "zod";
 
 const CreateCommentSchema = z.object({
@@ -16,7 +20,26 @@ export const createComment = async (
     comment: formData.get("comment"),
   });
 
-  console.log({ postId, comment });
+  const cookieStore = cookies();
+  const supabase = createServerClient(cookieStore);
 
+  const session = await getSession();
+
+  if (!session) {
+    return { errorMessage: "Not connected" };
+  }
+
+  const { data, error } = await supabase
+    .from("post_comments")
+    .insert({ post_id: postId, comment, user_id: session.user.id })
+    .select()
+    .single();
+
+  if (error || !data) {
+    console.log(error);
+    return { errorMessage: "Error occured when creating post comment" };
+  }
+
+  revalidatePath(`/posts/${data.id}`);
   return { errorMessage: "" };
 };

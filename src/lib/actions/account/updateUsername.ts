@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import { z } from "zod";
 import { createServerClient } from "@/lib/supabase/clients/server";
 import { getSession } from "@/lib/supabase/queries/auth/getSession";
+import { revalidatePath } from "next/cache";
 
 const UpdateUsernameSchema = z.object({
   username: z.string(),
@@ -40,6 +41,6 @@ export const updateUsername = async (
     return { errorMessage: "Invalid update username" };
   }
 
-  //revalidatePath("/");
+  revalidatePath("/");
   return { errorMessage: "" };
 };
