@@ -1,4 +1,3 @@
-import { getPost } from "@/lib/supabase/queries/post/getPost";
 import { NextLayoutProps } from "@/lib/types";
 import { Card, Container } from "@mantine/core";
 import { notFound } from "next/navigation";

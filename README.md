@@ -33,6 +33,8 @@ Uses:
     - [x] Design
 - Post:
     - [x] Design
+- Edit Post:
+    - [x] Design
 - Profiles:
     - [x] Design
 - Profile:

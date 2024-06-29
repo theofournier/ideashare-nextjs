@@ -31,6 +31,10 @@ export default async function Posts({ searchParams }: NextPageProps<Props>) {
     redirect(`/posts?${params}`);
   };
 
+  if (!posts || posts.length === 0) {
+    return <Container size="lg">No posts</Container>;
+  }
+
   return (
     <Container size="lg">
       <Group>

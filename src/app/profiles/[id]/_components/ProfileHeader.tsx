@@ -43,9 +43,9 @@ export const ProfileHeader = ({ profile }: Props) => {
       </Group>
       <ProfileTabs
         id={profile.user.id}
-        postCount={profile.activityInfo.postCount}
-        postVotedCount={profile.activityInfo.postVotedCount}
-        followingCount={profile.activityInfo.followingCount}
+        postCount={profile.activityInfo?.postCount}
+        postVotedCount={profile.activityInfo?.postVotedCount}
+        followingCount={profile.activityInfo?.followingCount}
       />
     </Stack>
   );

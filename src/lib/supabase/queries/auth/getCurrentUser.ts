@@ -1,7 +1,9 @@
 import { cookies } from "next/headers";
 import { createServerClient } from "../../clients/server";
+import { CurrentUser } from "../../schema/types";
+import { userMapping } from "../../schema/supabaseMapping";
 
-export async function getCurrentUser() {
+export async function getCurrentUser(): Promise<CurrentUser | null> {
   const cookieStore = cookies();
   const supabase = createServerClient(cookieStore);
   try {
@@ -22,12 +24,7 @@ export async function getCurrentUser() {
       console.log("Error fetching profile:", error);
       return null;
     }
-    return {
-      id: data.id,
-      username: data.username || undefined,
-      avatarUrl: data.avatar_url || undefined,
-      email: session.user.email,
-    };
+    return { ...userMapping(data), email: session.user.email };
   } catch (error) {
     console.error("Error:", error);
     return null;

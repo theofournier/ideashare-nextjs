@@ -1,8 +1,4 @@
-import { getPosts } from "@/lib/supabase/queries/post/getPosts";
-import { Container, Group, SimpleGrid } from "@mantine/core";
-import { NextPageProps } from "@/lib/types";
-import { redirect } from "next/navigation";
-import { getProfiles } from "@/lib/supabase/queries/profile/getProfiles";
+import { SimpleGrid } from "@mantine/core";
 import { Profile } from "@/lib/supabase/schema/types";
 import { ProfileItem } from "./ProfileItem";
 

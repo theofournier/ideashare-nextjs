@@ -31,6 +31,10 @@ export default async function Profiles({ searchParams }: NextPageProps<Props>) {
     redirect(`/profiles?${params}`);
   };
 
+  if (!profiles || profiles.length === 0) {
+    return <Container size="lg">No profiles</Container>;
+  }
+
   return (
     <Container size="lg">
       <Group>
