@@ -1,5 +1,7 @@
+import { PostForm } from "@/components/Post/PostForm/PostForm";
 import { getPost } from "@/lib/supabase/queries/post/getPost";
 import { NextPageProps } from "@/lib/types";
+import { Container } from "@mantine/core";
 import { notFound } from "next/navigation";
 
 export default async function EditPost({ params }: NextPageProps) {
@@ -9,5 +11,9 @@ export default async function EditPost({ params }: NextPageProps) {
     return notFound();
   }
 
-  return <div>Edit post {params.id}</div>;
+  return (
+    <Container size="lg">
+      <PostForm post={post} />
+    </Container>
+  );
 }

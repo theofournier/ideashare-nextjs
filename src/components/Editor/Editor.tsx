@@ -1,7 +1,7 @@
 "use client";
 
 import { RichTextEditor, Link } from "@mantine/tiptap";
-import { useEditor } from "@tiptap/react";
+import { Content, useEditor } from "@tiptap/react";
 import Highlight from "@tiptap/extension-highlight";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
@@ -19,9 +19,10 @@ import { editorHandleDrop } from "./extensions/editorHandleDrop";
 
 type Props = {
   onUpdate: (content: string) => void;
+  content?: Content;
 };
 
-export const Editor = ({ onUpdate }: Props) => {
+export const Editor = ({ onUpdate, content }: Props) => {
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -35,7 +36,7 @@ export const Editor = ({ onUpdate }: Props) => {
       Color,
       ResizableImage,
     ],
-    content: defaultContent,
+    content: content ?? defaultContent,
     onUpdate: ({ editor }) => {
       onUpdate(editor.getHTML());
     },

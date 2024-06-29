@@ -17,23 +17,30 @@ import { useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import { useDebouncedCallback } from "use-debounce";
 import { InputLabelPostForm } from "./InputLabelPostForm";
+import { Post } from "@/lib/supabase/schema/types";
+import { editPost } from "@/lib/actions/post/editPost";
 
-const SaveButton = () => {
+const SaveButton = ({ isEditing = false }: { isEditing?: boolean }) => {
   const { pending } = useFormStatus();
 
   return (
     <Button type="submit" loading={pending} leftSection={<IconUpload />}>
-      Publish post
+      {isEditing ? "Save post" : "Publish post"}
     </Button>
   );
 };
 
-export const CreatePostForm = () => {
-  const [state, formAction] = useFormState(createPost, { errorMessage: "" });
+type Props = {
+  post?: Post;
+};
 
-  const [content, setContent] = useState<string>("");
+export const PostForm = ({ post }: Props) => {
+  const [state, formAction] = useFormState(post ? editPost : createPost, {
+    errorMessage: "",
+  });
+
+  const [content, setContent] = useState<string>(post?.description ?? "");
   const setContentDebounced = useDebouncedCallback((value) => {
-    console.log(value);
     setContent(value);
   }, 1000);
 
@@ -41,15 +48,16 @@ export const CreatePostForm = () => {
     <form action={formAction}>
       <Stack>
         <Group justify="space-between">
-          <Title>Create Post</Title>
+          <Title>{post ? "Edit post" : "Create post"}</Title>
           <Stack gap="xs" align="flex-end">
-            <SaveButton />
+            <SaveButton isEditing={!!post} />
             {state.errorMessage && (
               <Text c="var(--mantine-color-error)">{state.errorMessage}</Text>
             )}
           </Stack>
         </Group>
 
+        <input name="postId" value={post?.id} hidden aria-hidden readOnly />
         <input name="description" value={content} hidden aria-hidden readOnly />
         <TextInput
           label={
@@ -65,6 +73,7 @@ export const CreatePostForm = () => {
           required
           size="lg"
           withAsterisk={false}
+          defaultValue={post?.title}
         />
         <Textarea
           label={
@@ -80,6 +89,7 @@ export const CreatePostForm = () => {
           minRows={4}
           maxRows={10}
           withAsterisk={false}
+          defaultValue={post?.shortDescription}
         />
         <Input.Wrapper
           label={
@@ -91,7 +101,10 @@ export const CreatePostForm = () => {
           required
           withAsterisk={false}
         >
-          <Editor onUpdate={(content) => setContentDebounced(content)} />
+          <Editor
+            content={post?.description}
+            onUpdate={(content) => setContentDebounced(content)}
+          />
         </Input.Wrapper>
       </Stack>
     </form>

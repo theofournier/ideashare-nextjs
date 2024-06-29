@@ -1,10 +1,10 @@
-import { Container, Title } from "@mantine/core";
-import { CreatePostForm } from "./_components/CreatePostForm";
+import { Container } from "@mantine/core";
+import { PostForm } from "@/components/Post/PostForm/PostForm";
 
 export default function CreatePost() {
   return (
     <Container size="lg">
-      <CreatePostForm />
+      <PostForm />
     </Container>
   );
 }
