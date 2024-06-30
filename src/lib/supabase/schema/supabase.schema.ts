@@ -51,6 +51,35 @@ export type Database = {
   };
   public: {
     Tables: {
+      post_activity_infos: {
+        Row: {
+          comment_count: number;
+          post_id: string;
+          view_count: number;
+          vote_count: number;
+        };
+        Insert: {
+          comment_count?: number;
+          post_id: string;
+          view_count?: number;
+          vote_count?: number;
+        };
+        Update: {
+          comment_count?: number;
+          post_id?: string;
+          view_count?: number;
+          vote_count?: number;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "public_post_activity_infos_post_id_fkey";
+            columns: ["post_id"];
+            referencedRelation: "posts";
+            referencedColumns: ["id"];
+            isOneToOne: true;
+          }
+        ];
+      };
       post_comments: {
         Row: {
           comment: string;
@@ -189,18 +218,7 @@ export type Database = {
       [_ in never]: never;
     };
     Functions: {
-      get_posts_activity_info: {
-        Args: {
-          userid?: string;
-          postid?: string;
-        };
-        Returns: {
-          post_id: string;
-          vote_count: number;
-          comment_count: number;
-          voted: number;
-        }[];
-      };
+      [_ in never]: never;
     };
     Enums: {
       [_ in never]: never;

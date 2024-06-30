@@ -27,8 +27,10 @@ export const profileMapping = (
 
 export const postMapping = (
   post: Database["public"]["Tables"]["posts"]["Row"],
-  user?: SupabaseUser | null,
-  activityInfo?: PostActivityInfo | null
+  activityInfo:
+    | Database["public"]["Tables"]["post_activity_infos"]["Row"]
+    | null,
+  user: SupabaseUser | null
 ): Post => ({
   id: post.id,
   title: post.title,
@@ -36,7 +38,7 @@ export const postMapping = (
   description: post.description,
   createdAt: post.created_at,
   user: user ? userMapping(user) : undefined,
-  activityInfo: activityInfo || undefined,
+  activityInfo: postActivityInfoMapping(activityInfo),
 });
 
 export const postCommentMapping = (
@@ -60,11 +62,11 @@ export const postVoteMapping = (
 });
 
 export const postActivityInfoMapping = (
-  postActivityInfo: Database["public"]["Functions"]["get_posts_activity_info"]["Returns"][0]
+  activityInfo:
+    | Database["public"]["Tables"]["post_activity_infos"]["Row"]
+    | null
 ): PostActivityInfo => ({
-  postId: postActivityInfo.post_id,
-  voted: Boolean(postActivityInfo.voted),
-  voteCount: postActivityInfo.vote_count,
-  commentCount: postActivityInfo.comment_count,
-  viewCount: undefined,
+  voteCount: activityInfo?.vote_count,
+  commentCount: activityInfo?.comment_count,
+  viewCount: activityInfo?.view_count,
 });

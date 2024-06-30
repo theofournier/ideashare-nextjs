@@ -2,7 +2,6 @@ import { cookies } from "next/headers";
 import { createServerClient } from "../../clients/server";
 import { Post } from "../../schema/types";
 import { postMapping } from "../../schema/supabaseMapping";
-import { getPostActivityInfo } from "./getPostActivityInfo";
 
 type PostSearchParams = {
   userId?: string;
@@ -14,7 +13,9 @@ export async function getPosts(
   const cookieStore = cookies();
   const supabase = createServerClient(cookieStore);
   try {
-    let query = supabase.from("posts").select("*, profiles(*)");
+    let query = supabase
+      .from("posts")
+      .select("*, profiles(*), post_activity_infos(*)");
 
     if (params) {
       const { userId } = params;
@@ -30,14 +31,8 @@ export async function getPosts(
       return null;
     }
 
-    const postActivityInfos = await getPostActivityInfo();
-
     return data.map((post) =>
-      postMapping(
-        post,
-        post.profiles,
-        postActivityInfos?.find((activity) => post.id === activity.postId)
-      )
+      postMapping(post, post.post_activity_infos, post.profiles)
     );
   } catch (error) {
     console.error("Error fetching posts:", error);

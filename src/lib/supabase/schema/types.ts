@@ -9,11 +9,9 @@ export type CurrentUser = User & {
 };
 
 export type PostActivityInfo = {
-  postId: string;
   voteCount?: number;
   commentCount?: number;
   viewCount?: number;
-  voted?: boolean;
 };
 
 export type Post = {

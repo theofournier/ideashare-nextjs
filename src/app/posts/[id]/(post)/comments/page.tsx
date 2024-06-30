@@ -7,16 +7,12 @@ import { CreateCommentForm } from "./_components/CreateCommentForm";
 export default async function Post({ params }: NextPageProps) {
   const comments = await getPostComments(params.id);
 
-  if (!comments || comments.length === 0) {
-    return <Container size="lg">No comments</Container>;
-  }
-
   return (
     <Stack mt={16}>
       <div>
         <CreateCommentForm postId={params.id} />
       </div>
-      {comments.length === 0 ? (
+      {!comments || comments.length === 0 ? (
         <Center>
           <Stack>
             <Title order={4}>No comments</Title>

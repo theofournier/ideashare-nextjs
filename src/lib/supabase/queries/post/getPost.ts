@@ -2,7 +2,6 @@ import { cookies } from "next/headers";
 import { Post } from "../../schema/types";
 import { createServerClient } from "../../clients/server";
 import { postMapping } from "../../schema/supabaseMapping";
-import { getPostActivityInfo } from "./getPostActivityInfo";
 
 export async function getPost(id: string): Promise<Post | null> {
   const cookieStore = cookies();
@@ -10,7 +9,7 @@ export async function getPost(id: string): Promise<Post | null> {
   try {
     const { data, error } = await supabase
       .from("posts")
-      .select("*, profiles(*)")
+      .select("*, profiles(*), post_activity_infos(*)")
       .eq("id", id)
       .single();
 
@@ -19,13 +18,7 @@ export async function getPost(id: string): Promise<Post | null> {
       return null;
     }
 
-    const postActivityInfos = await getPostActivityInfo({ postId: id });
-
-    return postMapping(
-      data,
-      data.profiles,
-      postActivityInfos?.find((activity) => activity.postId === id)
-    );
+    return postMapping(data, data.post_activity_infos, data.profiles);
   } catch (error) {
     console.log(`Error fetching post ${id}:`, error);
     return null;
