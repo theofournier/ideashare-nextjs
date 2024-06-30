@@ -9,9 +9,11 @@ export type CurrentUser = User & {
 };
 
 export type PostActivityInfo = {
+  postId: string;
   voteCount?: number;
   commentCount?: number;
   viewCount?: number;
+  voted?: boolean;
 };
 
 export type Post = {
@@ -29,6 +31,13 @@ export type PostComment = {
   postId: string;
   comment: string;
   user?: User;
+  createdAt: string;
+};
+
+export type PostVote = {
+  id: string;
+  postId: string;
+  userId: string;
   createdAt: string;
 };
 

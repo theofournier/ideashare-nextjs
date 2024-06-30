@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { createServerClient } from "../../clients/server";
 import { Post } from "../../schema/types";
 import { postMapping } from "../../schema/supabaseMapping";
+import { getPostActivityInfo } from "./getPostActivityInfo";
 
 type PostSearchParams = {
   userId?: string;
@@ -28,7 +29,16 @@ export async function getPosts(
       console.log("Error fetching posts:", error);
       return null;
     }
-    return data.map((post) => postMapping(post, post.profiles));
+
+    const postActivityInfos = await getPostActivityInfo();
+
+    return data.map((post) =>
+      postMapping(
+        post,
+        post.profiles,
+        postActivityInfos?.find((activity) => post.id === activity.postId)
+      )
+    );
   } catch (error) {
     console.error("Error fetching posts:", error);
     return null;

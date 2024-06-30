@@ -88,6 +88,40 @@ export type Database = {
           }
         ];
       };
+      post_votes: {
+        Row: {
+          created_at: string;
+          id: string;
+          post_id: string;
+          user_id: string;
+        };
+        Insert: {
+          created_at?: string;
+          id?: string;
+          post_id: string;
+          user_id: string;
+        };
+        Update: {
+          created_at?: string;
+          id?: string;
+          post_id?: string;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "public_post_votes_post_id_fkey";
+            columns: ["post_id"];
+            referencedRelation: "posts";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "public_post_votes_user_id_fkey";
+            columns: ["user_id"];
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
       posts: {
         Row: {
           created_at: string;
@@ -155,7 +189,18 @@ export type Database = {
       [_ in never]: never;
     };
     Functions: {
-      [_ in never]: never;
+      get_posts_activity_info: {
+        Args: {
+          userid?: string;
+          postid?: string;
+        };
+        Returns: {
+          post_id: string;
+          vote_count: number;
+          comment_count: number;
+          voted: number;
+        }[];
+      };
     };
     Enums: {
       [_ in never]: never;

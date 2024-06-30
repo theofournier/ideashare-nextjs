@@ -21,7 +21,11 @@ export const PostHeader = ({ post }: Props) => {
           <Button component={Link} href={`/posts/${post.id}/edit`}>
             Edit post
           </Button>
-          <VoteButton postId={post.id} size="lg" />
+          <VoteButton
+            postId={post.id}
+            size="lg"
+            voted={post.activityInfo?.voted}
+          />
           <Text size="sm">
             <Text span fw="bold">
               {post.activityInfo?.voteCount ?? 0}

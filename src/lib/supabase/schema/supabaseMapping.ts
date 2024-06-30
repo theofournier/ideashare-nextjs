@@ -3,6 +3,7 @@ import {
   Post,
   PostActivityInfo,
   PostComment,
+  PostVote,
   Profile,
   ProfileActivityInfo,
   User,
@@ -47,4 +48,23 @@ export const postCommentMapping = (
   comment: postComment.comment,
   createdAt: postComment.created_at,
   user: user ? userMapping(user) : undefined,
+});
+
+export const postVoteMapping = (
+  postVote: Database["public"]["Tables"]["post_votes"]["Row"]
+): PostVote => ({
+  id: postVote.id,
+  userId: postVote.user_id,
+  postId: postVote.post_id,
+  createdAt: postVote.created_at,
+});
+
+export const postActivityInfoMapping = (
+  postActivityInfo: Database["public"]["Functions"]["get_posts_activity_info"]["Returns"][0]
+): PostActivityInfo => ({
+  postId: postActivityInfo.post_id,
+  voted: Boolean(postActivityInfo.voted),
+  voteCount: postActivityInfo.vote_count,
+  commentCount: postActivityInfo.comment_count,
+  viewCount: undefined,
 });

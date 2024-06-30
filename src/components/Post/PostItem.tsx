@@ -54,7 +54,11 @@ export const PostItem = ({ post }: Props) => {
               </Text>
             </Group>
             <Group grow>
-              <VoteButton postId={post.id} size="sm" />
+              <VoteButton
+                postId={post.id}
+                size="sm"
+                voted={post.activityInfo?.voted}
+              />
               <Button variant="subtle" leftSection={<IconMessageCircle />}>
                 <Text size="sm" c="dimmed">
                   Comment
