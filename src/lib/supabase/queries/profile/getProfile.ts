@@ -9,7 +9,7 @@ export async function getProfile(id: string): Promise<Profile | null> {
   try {
     const { data, error } = await supabase
       .from("profiles")
-      .select("*")
+      .select("*, profile_activity_infos(*)")
       .eq("id", id)
       .single();
 
@@ -17,7 +17,7 @@ export async function getProfile(id: string): Promise<Profile | null> {
       console.log(`Error fetching profile ${id}:`, error);
       return null;
     }
-    return profileMapping(data);
+    return profileMapping(data, data.profile_activity_infos);
   } catch (error) {
     console.log(`Error fetching profile ${id}:`, error);
     return null;

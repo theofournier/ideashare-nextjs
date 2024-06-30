@@ -7,13 +7,17 @@ export async function getProfiles(): Promise<Profile[] | null> {
   const cookieStore = cookies();
   const supabase = createServerClient(cookieStore);
   try {
-    const { data, error } = await supabase.from("profiles").select("*");
+    const { data, error } = await supabase
+      .from("profiles")
+      .select("*, profile_activity_infos(*)");
 
     if (!data) {
       console.log("Error fetching profiles:", error);
       return null;
     }
-    return data.map((profile) => profileMapping(profile));
+    return data.map((profile) =>
+      profileMapping(profile, profile.profile_activity_infos)
+    );
   } catch (error) {
     console.log("Error fetching profiles:", error);
     return null;

@@ -19,10 +19,24 @@ export const userMapping = (user: SupabaseUser): User => ({
 
 export const profileMapping = (
   user: SupabaseUser,
-  activityInfo?: ProfileActivityInfo | null
+  activityInfo:
+    | Database["public"]["Tables"]["profile_activity_infos"]["Row"]
+    | null
 ): Profile => ({
   user: userMapping(user),
-  activityInfo: activityInfo || undefined,
+  activityInfo: profileActivityInfoMapping(activityInfo),
+});
+
+export const profileActivityInfoMapping = (
+  activityInfo:
+    | Database["public"]["Tables"]["profile_activity_infos"]["Row"]
+    | null
+): ProfileActivityInfo => ({
+  voteCount: activityInfo?.vote_count,
+  postVotedCount: activityInfo?.post_voted_count,
+  postCount: activityInfo?.post_count,
+  followerCount: activityInfo?.follower_count,
+  followingCount: activityInfo?.following_count,
 });
 
 export const postMapping = (

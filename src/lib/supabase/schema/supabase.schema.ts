@@ -117,6 +117,40 @@ export type Database = {
           }
         ];
       };
+      post_views: {
+        Row: {
+          created_at: string;
+          id: string;
+          post_id: string;
+          user_id: string;
+        };
+        Insert: {
+          created_at?: string;
+          id?: string;
+          post_id: string;
+          user_id: string;
+        };
+        Update: {
+          created_at?: string;
+          id?: string;
+          post_id?: string;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "public_post_views_post_id_fkey";
+            columns: ["post_id"];
+            referencedRelation: "posts";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "public_post_views_user_id_fkey";
+            columns: ["user_id"];
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
       post_votes: {
         Row: {
           created_at: string;
@@ -182,6 +216,41 @@ export type Database = {
             columns: ["user_id"];
             referencedRelation: "profiles";
             referencedColumns: ["id"];
+          }
+        ];
+      };
+      profile_activity_infos: {
+        Row: {
+          follower_count: number;
+          following_count: number;
+          post_count: number;
+          post_voted_count: number;
+          user_id: string;
+          vote_count: number;
+        };
+        Insert: {
+          follower_count?: number;
+          following_count?: number;
+          post_count?: number;
+          post_voted_count?: number;
+          user_id: string;
+          vote_count?: number;
+        };
+        Update: {
+          follower_count?: number;
+          following_count?: number;
+          post_count?: number;
+          post_voted_count?: number;
+          user_id?: string;
+          vote_count?: number;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "public_profile_activity_infos_user_id_fkey";
+            columns: ["user_id"];
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+            isOneToOne: true;
           }
         ];
       };
