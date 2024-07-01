@@ -83,8 +83,35 @@ AS $function$BEGIN
 END;$function$
 ;
 
+CREATE OR REPLACE FUNCTION private.modify_profile_follow_count()
+ RETURNS trigger
+ LANGUAGE plpgsql
+ SECURITY DEFINER
+AS $function$BEGIN
+  IF TG_OP = 'INSERT' THEN
+    UPDATE profile_activity_infos
+    SET follower_count = follower_count + 1
+    WHERE user_id = NEW.following_user_id;
+    UPDATE profile_activity_infos
+    SET following_count = following_count + 1
+    WHERE user_id = NEW.follower_user_id;
+    RETURN NEW;
+  ELSEIF TG_OP = 'DELETE' THEN
+    UPDATE profile_activity_infos
+    SET follower_count = follower_count - 1
+    WHERE user_id = OLD.following_user_id;
+    UPDATE profile_activity_infos
+    SET following_count = following_count - 1
+    WHERE user_id = OLD.follower_user_id;
+    RETURN OLD;
+  END IF;
+END;$function$
+;
+
 CREATE TRIGGER on_modify_profile_post_count AFTER INSERT OR DELETE ON public.posts FOR EACH ROW EXECUTE FUNCTION private.modify_profile_post_count();
 
 CREATE TRIGGER on_modify_profile_post_voted_count AFTER INSERT OR DELETE ON public.post_votes FOR EACH ROW EXECUTE FUNCTION private.modify_profile_post_voted_count();
 
 CREATE TRIGGER on_modify_profile_vote_count AFTER INSERT OR DELETE ON public.post_votes FOR EACH ROW EXECUTE FUNCTION private.modify_profile_vote_count();
+
+CREATE TRIGGER on_modify_profile_follow_count AFTER INSERT OR DELETE ON public.profile_follows FOR EACH ROW EXECUTE FUNCTION private.modify_profile_follow_count();

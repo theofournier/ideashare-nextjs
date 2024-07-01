@@ -254,6 +254,40 @@ export type Database = {
           }
         ];
       };
+      profile_follows: {
+        Row: {
+          created_at: string;
+          follower_user_id: string;
+          following_user_id: string;
+          id: string;
+        };
+        Insert: {
+          created_at?: string;
+          follower_user_id: string;
+          following_user_id: string;
+          id?: string;
+        };
+        Update: {
+          created_at?: string;
+          follower_user_id?: string;
+          following_user_id?: string;
+          id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "public_profile_follows_follower_user_id_fkey";
+            columns: ["follower_user_id"];
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "public_profile_follows_following_user_id_fkey";
+            columns: ["following_user_id"];
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
       profiles: {
         Row: {
           avatar_url: string | null;
